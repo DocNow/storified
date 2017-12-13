@@ -37,10 +37,23 @@ def archive_story(story, archive_dir):
     logging.info("finished archiving %s", story["slug"])
 
 def download(story, story_dir):
-    # https://api.storify.com/v1/stories/docnow/docnowcommunity-chat-2" 
-    # https://storify.com/docnow/docnowcommunity-chat-2.xml
-    # https://storify.com/docnow/docnowcommunity-chat-2.html
-    logging.info("downloading story %s to %s", story["slug"], story_dir)
+    slug = story["slug"]
+    username = story["author"]["username"]
+    logging.info("downloading story %s to %s", slug, story_dir)
+
+    url = "https://api.storify.com/v1/stories/%s/%s" % (username, slug)
+    download_file(url, os.path.join(story_dir, "index.json"))
+
+    url = "https://storify.com/%s/%s.xml" % (username, slug)
+    download_file(url, os.path.join(story_dir, "index.xml"))
+
+    url = "https://storify.com/%s/%s.html" % (username, slug)
+    download_file(url, os.path.join(story_dir, "index.html"))
+
+
+def download_file(url, path):
+    resp = requests.get(url)
+    open(path, "w").write(resp.text)
 
 def fetch_images(story_dir):
     logging.info("fetching images for %s", story_dir)
