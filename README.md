@@ -1,4 +1,4 @@
-Download all the archives for Storify account:
+Download all the archives for your Storify account:
 
     storified <account name>
 
