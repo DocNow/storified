@@ -9,7 +9,7 @@ will break when Storify goes offline.
 
 ## Install
 
-1. Install [Python](https://python.org)
+1. Install [Python]
 2. pip install storified
 
 ## Run
@@ -20,3 +20,6 @@ This will create a directory with the same name as your account name, that
 contains a sub-directory for each story, which in turn contains the HTML, JSON
 and XML export files for the story.
 
+[Storify]: https://en.wikipedia.org/wiki/Storify
+[announced]: https://web.archive.org/web/20171212163903/https://storify.com/faq-eol
+[Python]: https://python.org
