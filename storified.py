@@ -7,7 +7,7 @@ import requests
 
 def storified(account_name):
     try:
-        archive_dir = setup_dir(account_name)
+        archive_dir = setup_dir(os.path.join("downloads", account_name))
         logging.basicConfig(
             filename=os.path.join(archive_dir, "storified.log"),
             level=logging.INFO
@@ -65,7 +65,7 @@ def setup_dir(path):
     if (os.path.exists(path)):
         raise StorifiedException("directory %s already exists", path)
     try:
-        os.mkdir(path)
+        os.makedirs(path)
     except Exception as e:
         raise StorifiedException("unable to create target directory: %s", path)
     return path
