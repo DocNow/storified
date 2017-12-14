@@ -18,7 +18,8 @@ will break when Storify goes offline.
 
 This will create a directory named after your account, which contains a
 sub-directory for each story, which in turn contains the HTML, JSON and XML
-export files for the story. For example, for the [digdialog] Storify account:
+export files for the story. For example, here is a partial directory structure
+created for the [digdialog] Storify account:
 
 ```
 digdialog/
