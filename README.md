@@ -20,26 +20,26 @@ links will break when Storify goes offline.
 
     % storified.py <account name>
 
-This will create a directory named after your account, which contains a
+This will create a directory named after your account under the downloads directory, which contains a
 sub-directory for each story, which in turn contains the HTML, JSON and XML
 export files for the story. For example, here is a partial directory structure
 created for the [digdialog] Storify account:
 
 ```
-digdialog/
-├── a-woman-s-touch-manual-labor-pink-collar-workers-a
-│   ├── index.html
-│   ├── index.json
-│   └── index.xml
-├── alberto-campagnolo-digital-dialogue-november-1-201
-│   ├── index.html
-│   ├── index.json
-│   └── index.xml
-└── alexandrina-agloro-digital-dialogue-october-31-201
-    ├── index.html
-    ├── index.json
-    └── index.xml
-
+downloads/
+└── digdialog/
+    ├── a-woman-s-touch-manual-labor-pink-collar-workers-a
+    │   ├── index.html
+    │   ├── index.json
+    │   └── index.xml
+    ├── alberto-campagnolo-digital-dialogue-november-1-201
+    │   ├── index.html
+    │   ├── index.json
+    │   └── index.xml
+    └── alexandrina-agloro-digital-dialogue-october-31-201
+        ├── index.html
+        ├── index.json
+        └── index.xml
 ```
 
 [Storify]: https://en.wikipedia.org/wiki/Storify
