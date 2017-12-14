@@ -1,4 +1,4 @@
-version = '0.0.1'
+version = '0.0.2'
 
 from setuptools import setup
 
@@ -9,7 +9,7 @@ setup(
     author = 'Ed Summers',
     author_email = 'ehs@pobox.com',
     py_modules = ['storified',],
-    scripts = 'storified.py',
+    scripts = ['storified.py',],
     install_requires = ['requests'],
     description = 'Download your Storify data',
 )

@@ -14,7 +14,7 @@ will break when Storify goes offline.
 
 ## Run
 
-    % storified <account name>
+    % storified.py <account name>
 
 This will create a directory with the same name as your account name, that
 contains a sub-directory for each story, which in turn contains the HTML, JSON
