@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.md
+LICENSE
+Dockerfile
+downloads
