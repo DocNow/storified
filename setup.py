@@ -8,7 +8,7 @@ setup(
     url = 'http://github.com/docnow/storified',
     author = 'Ed Summers',
     author_email = 'ehs@pobox.com',
-    py_modules = ['storified.py',],
+    py_modules = ['storified',],
     scripts = 'storified.py',
     install_requires = ['requests'],
     description = 'Download your Storify data',
