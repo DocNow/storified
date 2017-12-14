@@ -3,10 +3,13 @@ completely on May 16, 2018. Users have until then to download their stories at
 which point they will disappear from the web.
 
 *storified* is a little utility for downloading your stories as HTML, XML and
-JSON--which can be handy if you have a bunch of stories. The goal is to also add
-functionality to download referenced images, CSS and JavaScript and then
-rewriting the HTML to point to them, since these links will break when Storify
-goes offline.
+JSON--which can be handy if you have a bunch of stories. You can take these
+files and mount them on your own website and point your links to them instead of
+Storify.
+
+The immediate goal is to also add functionality to download referenced images,
+CSS and JavaScript and then rewriting the HTML to point to them, since these
+links will break when Storify goes offline.
 
 ## Install
 
