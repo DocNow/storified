@@ -42,7 +42,18 @@ downloads/
         └── index.xml
 ```
 
+## Docker
+
+Following [Docker] command can be used to avoid cloning this repo and installing Python and other dependencies.
+
+```
+$ docker container run -v <path/to/downloads/dir>:/storified/downloads ibnesayeed/storified <account name>
+```
+
+Replace the `<path/to/downloads/dir>` with a directory path on your machine and `<account name>` with a valid Storify account name.
+
 [Storify]: https://en.wikipedia.org/wiki/Storify
 [announced]: https://web.archive.org/web/20171212163903/https://storify.com/faq-eol
 [Python]: https://python.org
 [digdialog]: https://storify.com/digdialog/
+[Docker]: https://docs.docker.com/engine/installation/
