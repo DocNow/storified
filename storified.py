@@ -70,10 +70,9 @@ def rewrite_html(story_dir):
     logging.info("rewriting html %s", story_dir)
 
 def setup_dir(path):
-    if (os.path.exists(path)):
-        raise StorifiedException("directory %s already exists" % path)
     try:
-        os.makedirs(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
     except Exception as e:
         raise StorifiedException("unable to create target directory: %s", path)
     return path
