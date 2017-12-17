@@ -52,13 +52,13 @@ If you'd rather not install storified with pip you can also run it using
 [Docker]. 
 
 ```
-% docker run -v <PATH>:/storified docnow/storified <USERNAME>
+% docker run -v <PATH>:/storified docnow/storified <STORIFY_USERNAME>
 ```
 
 You will need to replace `<PATH>` with the full path to the directory you would
-like the files to be downloaded to, and <USERNAME> to be the Storify username
-who created the stories. For example if you wanted to download digdialog's
-stories to /home/ed/digdialog:
+like the files to be downloaded to, and <STORIFY_USERNAME> to be the Storify
+username who created the stories. For example if you wanted to download
+digdialog's stories to /home/ed/digdialog:
 
 ```
 % docker run -v /home/ed/digdialog:/storified docnow/storified digdialog
