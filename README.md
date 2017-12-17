@@ -51,7 +51,9 @@ command line option:
 If you'd rather not install storified with pip you can also run it using 
 [Docker]:
 
-``` $ docker container run -v </path/to/my/stories>:/storified/downloads docnow/storified <account name> --download-dir /path/to/my/stories ```
+```
+$ docker container run -v ./downloads:/storified/downloads docnow/storified <account name> --download-dir /storified/downloads
+```
 
 Replace the `</path/to/my/stories>` with a directory path on your machine and 
 `<account name>` with a valid Storify account name.
