@@ -7,4 +7,4 @@ LABEL      app.name="Storified" \
 WORKDIR    /storified
 RUN        pip install storified
 
-ENTRYPOINT ["storified"]
+ENTRYPOINT ["storified.py"]
