@@ -20,37 +20,41 @@ links will break when Storify goes offline.
 
     % storified.py <account name>
 
-This will create a directory named after your account under the downloads directory, which contains a
+This will create a directory named after your account, which contains a
 sub-directory for each story, which in turn contains the HTML, JSON and XML
 export files for the story. For example, here is a partial directory structure
 created for the [digdialog] Storify account:
 
 ```
-downloads/
-└── digdialog/
-    ├── a-woman-s-touch-manual-labor-pink-collar-workers-a
-    │   ├── index.html
-    │   ├── index.json
-    │   └── index.xml
-    ├── alberto-campagnolo-digital-dialogue-november-1-201
-    │   ├── index.html
-    │   ├── index.json
-    │   └── index.xml
-    └── alexandrina-agloro-digital-dialogue-october-31-201
-        ├── index.html
-        ├── index.json
-        └── index.xml
+digdialog/
+├── a-woman-s-touch-manual-labor-pink-collar-workers-a
+│   ├── index.html
+│   ├── index.json
+│   └── index.xml
+├── alberto-campagnolo-digital-dialogue-november-1-201
+│   ├── index.html
+│   ├── index.json
+│   └── index.xml
+└── alexandrina-agloro-digital-dialogue-october-31-201
+    ├── index.html
+    ├── index.json
+    └── index.xml
 ```
+
+If you want to control where the downloaded files go use the *--download-dir*
+command line option:
+
+    storified.py --download-dir /path/to/my/stories
 
 ## Docker
 
-Following [Docker] command can be used to avoid cloning this repo and installing Python and other dependencies.
+If you'd rather not install storified with pip you can also run it using 
+[Docker]:
 
-```
-$ docker container run -v <path/to/downloads/dir>:/storified/downloads ibnesayeed/storified <account name>
-```
+``` $ docker container run -v </path/to/my/stories>:/storified/downloads docnow/storified <account name> --download-dir /path/to/my/stories ```
 
-Replace the `<path/to/downloads/dir>` with a directory path on your machine and `<account name>` with a valid Storify account name.
+Replace the `</path/to/my/stories>` with a directory path on your machine and 
+`<account name>` with a valid Storify account name.
 
 [Storify]: https://en.wikipedia.org/wiki/Storify
 [announced]: https://web.archive.org/web/20171212163903/https://storify.com/faq-eol
