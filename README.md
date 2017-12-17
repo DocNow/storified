@@ -18,12 +18,12 @@ links will break when Storify goes offline.
 
 ## Run
 
-    % storified.py <account name>
+    % storified.py <storify username>
 
-This will create a directory named after your account, which contains a
+This will create a directory named after your username, which contains a
 sub-directory for each story, which in turn contains the HTML, JSON and XML
 export files for the story. For example, here is a partial directory structure
-created for the [digdialog] Storify account:
+created for the [digdialog] Storify user:
 
 ```
 digdialog/
@@ -49,14 +49,12 @@ command line option:
 ## Docker
 
 If you'd rather not install storified with pip you can also run it using 
-[Docker]:
+[Docker]. For example this command will download all of the stories for the
+*digdialog* Storify user:
 
 ```
-$ docker container run -v ./downloads:/storified/downloads docnow/storified <account name> --download-dir /storified/downloads
+$ docker run -e STORIFY_USER=digdialog -v storified:/storified docnow/storified
 ```
-
-Replace the `</path/to/my/stories>` with a directory path on your machine and 
-`<account name>` with a valid Storify account name.
 
 [Storify]: https://en.wikipedia.org/wiki/Storify
 [announced]: https://web.archive.org/web/20171212163903/https://storify.com/faq-eol

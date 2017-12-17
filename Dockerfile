@@ -5,9 +5,6 @@ LABEL      app.name="Storified" \
            app.repo.url="https://github.com/DocNow/storified" 
 
 WORKDIR    /storified
-COPY       Pipfile* ./
 RUN        pip install storified
-COPY       . ./
-RUN        chmod a+x storified.py
 
-ENTRYPOINT ["./storified.py"]
+CMD storified $STORIFY_USER
