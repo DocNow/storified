@@ -5,6 +5,7 @@ LABEL      app.name="Storified" \
            app.repo.url="https://github.com/DocNow/storified" 
 
 WORKDIR    /storified
-RUN        pip install storified
+COPY       * ./
+RUN        python setup.py install
 
-ENTRYPOINT ["storified.py"]
+ENTRYPOINT ["storified.py", "--download-dir", "downloads"]
