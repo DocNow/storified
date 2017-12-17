@@ -39,10 +39,27 @@ digdialog/
     ├── index.html
     ├── index.json
     └── index.xml
+```
+
+If you want to control where the downloaded files go use the *--download-dir*
+command line option:
+
+    storified.py --download-dir /path/to/my/stories
+
+## Docker
+
+If you'd rather not install storified with pip you can also run it using 
+[Docker]:
 
 ```
+$ docker container run -v ./downloads:/storified/downloads docnow/storified <account name> --download-dir /storified/downloads
+```
+
+Replace the `</path/to/my/stories>` with a directory path on your machine and 
+`<account name>` with a valid Storify account name.
 
 [Storify]: https://en.wikipedia.org/wiki/Storify
 [announced]: https://web.archive.org/web/20171212163903/https://storify.com/faq-eol
 [Python]: https://python.org
 [digdialog]: https://storify.com/digdialog/
+[Docker]: https://docs.docker.com/engine/installation/

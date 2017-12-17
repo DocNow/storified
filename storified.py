@@ -73,7 +73,7 @@ def setup_dir(path):
     if (os.path.exists(path)):
         raise StorifiedException("directory %s already exists" % path)
     try:
-        os.mkdir(path)
+        os.makedirs(path)
     except Exception as e:
         raise StorifiedException("unable to create target directory: %s", path)
     return path
