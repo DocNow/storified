@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import logging
 import argparse
 import requests
@@ -61,7 +62,10 @@ def download(story, story_dir):
 
 def download_file(url, path):
     resp = requests.get(url)
-    open(path, "w").write(resp.text)
+    if sys.version_info[0] == 3:
+        open(path, "w").write(resp.text)
+    else:
+        open(path, "w").write(resp.text.encode('utf8'))
 
 def fetch_images(story_dir):
     logging.info("fetching images for %s", story_dir)
