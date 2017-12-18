@@ -23,7 +23,7 @@ def test_storified():
     assert 'index.json' in files
     assert 'index.html' in files
     assert 'index.xml' in files
-    assert 'index-original.html' in files
+    assert 'index-localized.html' in files
     assert 'css' in files
     assert 'images' in files
 

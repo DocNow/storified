@@ -112,9 +112,8 @@ def rewrite_html(story, story_dir):
         if path:
             img['src'] = path
 
-    orig_html_file = html_file.replace('index.html', 'index-original.html')
-    os.rename(html_file, orig_html_file)
-    open(html_file, 'w').write(soup.prettify())
+    new_html_file = html_file.replace('index.html', 'index-localized.html')
+    open(new_html_file, 'w').write(soup.prettify())
 
 def setup_dir(path):
     try:
