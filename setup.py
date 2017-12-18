@@ -11,5 +11,7 @@ setup(
     py_modules = ['storified',],
     scripts = ['storified.py',],
     install_requires = ['requests'],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     description = 'Download your Storify data',
 )

@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 
 import os
+import re
+import bs4
 import sys
 import logging
 import argparse
 import requests
+
+from urllib.parse import urlparse
 
 def storified(account_name, archive_dir=None):
     try:
@@ -41,8 +45,7 @@ def get_stories(account_name):
 def archive_story(story, archive_dir):
     story_dir = setup_dir(os.path.join(archive_dir, story["slug"]))
     download(story, story_dir)
-    fetch_images(story_dir)
-    rewrite_html(story_dir)
+    rewrite_html(story, story_dir)
     logging.info("finished archiving %s", story["slug"])
 
 def download(story, story_dir):
@@ -51,27 +54,67 @@ def download(story, story_dir):
     logging.info("downloading story %s to %s", slug, story_dir)
 
     url = "https://api.storify.com/v1/stories/%s/%s" % (username, slug)
-    download_file(url, os.path.join(story_dir, "index.json"))
+    download_file(url, story_dir + "/index.json")
 
     url = "https://storify.com/%s/%s.xml" % (username, slug)
-    download_file(url, os.path.join(story_dir, "index.xml"))
+    download_file(url, story_dir + "/index.xml")
 
     url = "https://storify.com/%s/%s.html" % (username, slug)
-    download_file(url, os.path.join(story_dir, "index.html"))
+    download_file(url, story_dir + "/index.html")
 
 
 def download_file(url, path):
+    if url.startswith('//'):
+        url = 'http:' + url
     resp = requests.get(url)
-    if sys.version_info[0] == 3:
-        open(path, "w").write(resp.text)
-    else:
-        open(path, "w").write(resp.text.encode('utf8'))
+    if (resp.status_code != 200):
+        logging.error("GET %s resulted in %s", url, resp.status_code)
+        return None
 
-def fetch_images(story_dir):
-    logging.info("fetching images for %s", story_dir)
+    # create fs path baased on the url
+    os_path = os.path.join(*path.split('/'))
 
-def rewrite_html(story_dir):
+    # add file extension if needed
+    m = re.match(r'^(.+?)/(.+);?', resp.headers['content-type'])
+    if m and m.group(1).lower() == 'image':
+        filename, file_ext = os.path.splitext(os_path)
+        if file_ext == '':
+            path += '.' + m.group(2)
+            os_path += '.' + m.group(2)
+ 
+    # create the directory path if needed
+    dir_name = os.path.dirname(os_path)
+    if not os.path.isdir(dir_name):
+        logging.info('making directory %s', dir_name) 
+        os.makedirs(dir_name)
+
+    logging.info('downloading %s to %s', url, os_path)
+    open(os_path, "wb").write(resp.content)
+
+    return path
+
+def rewrite_html(story, story_dir):
     logging.info("rewriting html %s", story_dir)
+    html_file = os.path.join(story_dir, 'index.html')
+    html = open(html_file).read()
+    soup = bs4.BeautifulSoup(html, 'html.parser')
+
+    for link in soup.select('link[rel="stylesheet"]'):
+        href = link.get('href')
+        if href.startswith('http'):
+            path = localize(href, story_dir, 'css')
+            if (path):
+                link['href'] = path
+
+    for img in soup.select('img'):
+        src = img.get('src')
+        path = localize(src, story_dir, 'images')
+        if path:
+            img['src'] = path
+
+    orig_html_file = html_file.replace('index.html', 'index-original.html')
+    os.rename(html_file, orig_html_file)
+    open(html_file, 'w').write(soup.prettify())
 
 def setup_dir(path):
     try:
@@ -87,6 +130,15 @@ def setup_logging(archive_dir):
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(message)s"
     )
+
+def localize(url, story_dir, resource_type):
+    uri = urlparse(url)
+    path = story_dir + '/' + resource_type + '/' + uri.netloc + uri.path
+    path = download_file(url, path)
+    if path:
+        return os.path.relpath(path, story_dir)
+    else:
+        return None
 
 class StorifiedException(Exception):
     pass

@@ -4,8 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+
 requests = "*"
 "beautifulsoup4" = "*"
+pytest = "*"
 
 
 [dev-packages]
