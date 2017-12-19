@@ -106,6 +106,15 @@ def rewrite_html(story, story_dir):
             if (path):
                 link['href'] = path
 
+    for script in soup.select('script'):
+        src = script.get('src')
+        if src:
+            if not src.startswith('http'):
+                src = 'https://storify.com' + src
+            path = localize(src, story_dir, 'js')
+            if (path):
+                script['src'] = path
+
     for img in soup.select('img'):
         src = img.get('src')
         path = localize(src, story_dir, 'images')

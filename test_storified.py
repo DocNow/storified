@@ -19,13 +19,14 @@ def setup_module():
 def test_storified():
     storified.storified('AppraisalSAA', 'test-data')
     files = os.listdir(story_dir)
-    assert len(files) == 6
+    assert len(files) == 7
     assert 'index.json' in files
     assert 'index.html' in files
     assert 'index.xml' in files
     assert 'index-original.html' in files
     assert 'css' in files
     assert 'images' in files
+    assert 'js' in files
 
 def test_rewrite():
     # make sure the css and images are local instead of at storify or twitter

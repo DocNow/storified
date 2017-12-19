@@ -7,9 +7,9 @@ JSON--which can be handy if you have a bunch of stories. You can take these
 files and mount them on your own website and point your links to them instead of
 Storify.
 
-The immediate goal is to also add functionality to download referenced images,
-CSS and JavaScript and then rewriting the HTML to point to them, since these
-links will break when Storify goes offline.
+storified will also rewrite the index.html to use local images, css and
+javascript that are downloaded. The originally downloaded `index.html` is 
+stored as `index-original.html`.
 
 ## Install
 
@@ -28,17 +28,24 @@ created for the [digdialog] Storify user:
 ```
 digdialog/
 ├── a-woman-s-touch-manual-labor-pink-collar-workers-a
+│   ├── css
+│   ├── images
+│   ├── js
 │   ├── index.html
+│   ├── index-original.html
 │   ├── index.json
 │   └── index.xml
 ├── alberto-campagnolo-digital-dialogue-november-1-201
+│   ├── css
+│   ├── images
+│   ├── js
 │   ├── index.html
+│   ├── index-original.html
 │   ├── index.json
 │   └── index.xml
-└── alexandrina-agloro-digital-dialogue-october-31-201
-    ├── index.html
-    ├── index.json
-    └── index.xml
+
+...
+
 ```
 
 If you want to control where the downloaded files go use the *--download-dir*
