@@ -109,11 +109,14 @@ def rewrite_html(story, story_dir):
     for img in soup.select('img'):
         src = img.get('src')
         path = localize(src, story_dir, 'images')
+        if not path and 'profile_image' in src:
+            path = localize('https://pbs.twimg.com/media/Civ9AUkVAAAwihS.jpg', story_dir, 'images')
         if path:
             img['src'] = path
 
-    new_html_file = html_file.replace('index.html', 'index-localized.html')
-    open(new_html_file, 'w').write(soup.prettify())
+    orig_html_file = html_file.replace('index.html', 'index-original.html')
+    os.rename(html_file, orig_html_file)
+    open(html_file, 'w').write(soup.prettify())
 
 def setup_dir(path):
     try:

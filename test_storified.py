@@ -23,7 +23,7 @@ def test_storified():
     assert 'index.json' in files
     assert 'index.html' in files
     assert 'index.xml' in files
-    assert 'index-localized.html' in files
+    assert 'index-original.html' in files
     assert 'css' in files
     assert 'images' in files
 
@@ -33,7 +33,9 @@ def test_rewrite():
     html = open(html_file).read()
     soup = bs4.BeautifulSoup(html, 'html.parser')
     for link in soup.select('link[rel="stylesheet"]'):
-        assert not link.get('href').startswith('http')
+        href = str(link.get('href'))
+        print(href)
+        assert not href.startswith('http')
     for img in soup.select('img'):
         pass
         # assert not img.get('src').startswith('http')
