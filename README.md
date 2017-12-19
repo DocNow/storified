@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/DocNow/storified.svg?branch=master)](https://travis-ci.org/DocNow/storified)
+
 On December 12, 2017 [Storify] [announced] that they were going to shut down
 completely on May 16, 2018. Users have until then to download their stories at
 which point they will disappear from the web.
