@@ -10,7 +10,7 @@ setup(
     author_email = 'ehs@pobox.com',
     py_modules = ['storified',],
     scripts = ['storified.py',],
-    install_requires = ['requests', 'beautifulsoup4'],
+    install_requires = ['requests', 'beautifulsoup4', 'six'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     description = 'Download your Storify data',

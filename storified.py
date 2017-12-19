@@ -8,7 +8,7 @@ import logging
 import argparse
 import requests
 
-from urllib.parse import urlparse
+from six.moves.urllib.parse import urlparse
 
 def storified(account_name, archive_dir=None):
     try:
