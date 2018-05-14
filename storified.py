@@ -162,7 +162,7 @@ class StorifiedException(Exception):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("archive your Storify stories")
-    parser.add_argument("account_name", help="Your Storify account name")
+    parser.add_argument("account_name", help="your Storify account name")
     parser.add_argument("--download-dir", "-d", default=None, 
                         help="a directory to download data to")
     args = parser.parse_args()
