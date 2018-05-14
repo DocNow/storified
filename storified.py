@@ -4,6 +4,7 @@ import os
 import re
 import bs4
 import sys
+import time
 import logging
 import argparse
 import requests
@@ -63,12 +64,17 @@ def download(story, story_dir):
     download_file(url, story_dir + "/index.html")
 
 
-def download_file(url, path):
+def download_file(url, path, tries=10):
     if url.startswith('//'):
         url = 'http:' + url
     resp = requests.get(url)
     if (resp.status_code != 200):
         logging.error("GET %s resulted in %s", url, resp.status_code)
+        if resp.status_code != 404 and tries >= 0:
+            time.sleep(60 / tries)
+            tries -= 1
+            logging.info("Fetching %s again %s tries remaining", url, tries)
+            return download_file(url, path, tries)
         return None
 
     # create fs path baased on the url
