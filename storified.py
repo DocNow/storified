@@ -70,11 +70,13 @@ def download_file(url, path, tries=10):
     resp = requests.get(url)
     if (resp.status_code != 200):
         logging.error("GET %s resulted in %s", url, resp.status_code)
-        if resp.status_code != 404 and tries >= 0:
+        if resp.status_code not in [404, 500] and tries > 0:
             time.sleep(60 / tries)
             tries -= 1
             logging.info("Fetching %s again %s tries remaining", url, tries)
             return download_file(url, path, tries)
+        elif tries == 0:
+            logging.error("Too many tries to get %s - giving up", url)
         return None
 
     # create fs path baased on the url
